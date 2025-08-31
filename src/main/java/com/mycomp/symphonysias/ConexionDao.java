@@ -8,12 +8,10 @@ package com.mycomp.symphonysias;
  *
  * @author Spiri
  */
-public class ConexionDao {
-    
-}
+
 import java.sql.DriverManager;
 import java.sql.Connection;
-import java.sql.SQLException;
+/*import java.sql.SQLException;*/
 
 
 public class ConexionDao {
@@ -44,14 +42,15 @@ public class ConexionDao {
 
         }
     }
-    
+}    
     
     /* probar la conexión a la base de datos*/
 /*Esto es solo para probar la conexion con la base de datos despues lo podemos comentar para que no nos genere ningun problema en nuestro codigo*/
+/*    
 public static void main(String[]args){
   try
   {
-    Connection conn = ConexionDao.ObtenerConexion();
+    Connection conn = ConexionDao.obtenerConexion();
     if(conn !=null){
         System.out.println("Conexion a la base de datos exitosa");
     }else{
@@ -59,10 +58,11 @@ public static void main(String[]args){
     }
   }catch(Exception ex){
         System.out.println("Error al conectar");
-		  ex.printStackTracer();
+	ex.printStackTrace();
   }
   
-}
+   }
+}*/
+
     
     
-}

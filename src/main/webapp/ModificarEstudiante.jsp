@@ -4,15 +4,15 @@
     Author     : Spiri
 --%>
 
-<%@page import="java.util.List"%>
 <%@page import="com.mycomp.symphonysias.Estudiante"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-        <title>Sistema de Información Academica SIA - Modificar Estudiantes</title>
+        <title>Sistema de Información Academica SYMPHONY - SIAS - Modificar Estudiantes</title>
     </head>
     <body>
        <div class="container">

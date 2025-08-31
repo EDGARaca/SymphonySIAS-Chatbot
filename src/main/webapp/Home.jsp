@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema de Información Academica SIA</title>
+        <title>Sistema de Información Academica SYMPHONY - SIAS</title>
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     </head>
     <body style="background: #CDC5BF;">
@@ -26,7 +26,7 @@
                            <hr>
                            <h2><center><font color="#E3A869"><b>SISTEMA DE INFORMACION ACADEMICA - SIA</b></font></center></h2>
                            <hr>
-                           <img src="public/imagen/5.jpg" width="1100" height="" class="400">
+                           <img src="public/imagen/banda.jpg" width="1100" height="650" class="400">
                         </div>
                     </div>
                 </div>
