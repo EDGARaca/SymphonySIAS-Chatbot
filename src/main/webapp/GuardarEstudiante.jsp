@@ -23,7 +23,7 @@
                         <hr>
                         
                         </div>
-                        <h1><center>Registrar Estudiante</center></h1>
+                        <h1><center>Registrar un Estudiante</center></h1>
                         <div class="col">
                             <label>Nombre</label>
                                 <input type="text" name="nombre"  class="form-control" placeholder="Digite el nombre estudiante" required>

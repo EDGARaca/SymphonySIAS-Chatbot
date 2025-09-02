@@ -42,7 +42,7 @@ public class ConexionDao {
 
         }
     }
-}    
+    
     
     /* probar la conexión a la base de datos*/
 /*Esto es solo para probar la conexion con la base de datos despues lo podemos comentar para que no nos genere ningun problema en nuestro codigo*/
@@ -61,8 +61,6 @@ public static void main(String[]args){
 	ex.printStackTrace();
   }
   
-   }
-}*/
+   }*/
+}
 
-    
-    
