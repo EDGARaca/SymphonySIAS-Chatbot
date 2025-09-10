@@ -23,13 +23,15 @@ public class LoginServlet extends HttpServlet {
         String clave = req.getParameter("clave");
         
         UsuarioDAO dao = new UsuarioDAO();
-        boolean valido = dao.validarUsuario(usuario,clave);
-        
-        if (valido) {
-            req.getSession().setAttribute("usuario", usuario.toLowerCase().trim());
-            resp.sendRedirect("public/dashboard.jsp");
+        Usuario usuarioObj = dao.obtenerUsuario(usuario, clave);
+
+        if (usuario != null) {
+            HttpSession session = req.getSession();
+            session.setAttribute("nombre", usuarioObj.getNombre());
+            session.setAttribute("rol", usuarioObj.getRol());
+            resp.sendRedirect("dashboard.jsp");
         } else {
-            resp.sendRedirect("public/error.jsp");
+            resp.sendRedirect(req.getContextPath() + "/error.jsp");
         }
-    }   
+    }
 }

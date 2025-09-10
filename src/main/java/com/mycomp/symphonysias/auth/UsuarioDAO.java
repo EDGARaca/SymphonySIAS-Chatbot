@@ -10,32 +10,49 @@
 
 package com.mycomp.symphonysias.auth;
 
+import java.security.MessageDigest;
+import java.nio.charset.StandardCharsets;
+import java.util.HexFormat;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UsuarioDAO {
     
-    public boolean validarUsuario(String usuario, String clavePlano) {
-        String sql = "SELECT A2_clave FROM usuarios WHERE LOWER(TRIM(A1_usuario)) = ?";
-        try (
-            Connection conn = DBConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)
-        ) {
-            
-            stmt.setString(1, usuario.toLowerCase().trim());
+    public Usuario obtenerUsuario(String usuario, String clave) {
+    Usuario usuarioObj = null;
+
+        try (Connection conn = DBConexion.getConnection()) {
+            String sql = "SELECT id, usuario, password_hash, rol_id FROM usuarios WHERE usuario = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
             ResultSet rs = stmt.executeQuery();
-    
+
             if (rs.next()) {
-                String claveHash = rs.getString("A2_clave");
-                String claveIngresadaHash = HashUtil.sha256(clavePlano);
-                return claveHash.equals(claveIngresadaHash);
+                String hashBD = rs.getString("password_hash");
+
+                // Generar hash SHA-256 del input
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                byte[] hashBytes = md.digest(clave.getBytes(StandardCharsets.UTF_8));
+                String hashInput = HexFormat.of().formatHex(hashBytes);
+            
+                //Comparar hash
+                if (hashBD.equalsIgnoreCase(hashInput)) {
+                    usuarioObj = new Usuario(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("usuario"),
+                        rs.getString("password_hash"),
+                        String.valueOf(rs.getInt("nombre"))
+                    );
+                }
             }
-        } catch (SQLException e) {
-            System.err.println("Error de validación de usuario: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace(); // Puedes redirigir a logs institucionales si lo prefiere
         }
-        return false;
-    }   
+
+        return usuarioObj;
+    }
 }
+
   

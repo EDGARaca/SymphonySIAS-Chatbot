@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConnection {
+public class DBConexion {
 
     private static final String URL = "jdbc:mysql://localhost:33065/dbsymphonysias";
     private static final String USER = "root";

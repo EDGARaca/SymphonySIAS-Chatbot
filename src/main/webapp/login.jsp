@@ -11,11 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login - SymphonySIAS</title>
         
-        <link rel="stylesheet" href="public/css/style.css"
+        <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
         <div class="login-container">
-            <h4>Ingreso al sistema</h4>
+            <h5>Ingreso al sistema</h5>
             <h2>SYMPHONY SIAS</h2>
             <form action="login" method="post">
                 <label for="usuario">Usuario: </label>
