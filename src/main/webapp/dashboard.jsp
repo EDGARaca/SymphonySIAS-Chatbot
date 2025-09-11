@@ -22,7 +22,7 @@
         <title>Bienvenido</title>
     </head>
     <body>
-        <h2>Bienvenido, <%= usuarioSesion %>!</h2>
+        <h2>Bienvenido, <%= usuarioSesion.getNombre() %>!</h2>
         <p>Acceso concedido al sistema SymphonySIAS.</p>
     </body>
 </html>

@@ -45,17 +45,19 @@ public class LoginController extends HttpServlet {
         if(user != null) {
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", user);
-            switch (user.getRol()) {
-            case "admin":
-                response.sendRedirect("admin/dashboard.jsp");
-                break;
-            case "docente":
+            
+            String rol = user.getRol().toLowerCase();
+            
+            if (rol.startsWith("admin")) {
+                response.sendRedirect("bienvenida.jsp");
+            } else if (rol.startsWith("docente")){
                 response.sendRedirect("docente.jsp");
-                break;
-            case "estudiante":
+            } else if (rol.startsWith("estudiante")){
                 response.sendRedirect("estudiante.jsp");
-                break;
-            default:
+            } else if (rol.startsWith("funcionario")){    
+                response.sendRedirect("funcionario.jsp");
+            } else {
+                System.out.println("Rol no reconocido: " + rol);
                 response.sendRedirect("index.jsp");
             }
         } else {
