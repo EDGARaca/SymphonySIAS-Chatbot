@@ -15,7 +15,7 @@ import java.sql.Connection;
 
 
 public class ConexionDao {
-    // Declaración de variables para la conexion a la base de datos
+    // Declaracion de variables para la conexion a la base de datos
     private static final String url ="jdbc:mysql://localhost:33065/dbsymphonysias";
     private static final String username="root";
     private static final String pass="";

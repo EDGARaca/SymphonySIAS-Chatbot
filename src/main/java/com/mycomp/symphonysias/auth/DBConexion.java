@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 public class DBConexion {
 
-    private static final String URL = "jdbc:mysql://localhost:33065/dbsymphonysias";
+    private static final String URL = "jdbc:mysql://localhost:33065/login_ymphony";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     

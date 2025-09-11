@@ -6,7 +6,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="com.mycomp.symphonysias.Estudiante"%>
-<%@page import="com.mycomp.symphonysias.auth.Usuario"%>
+<%@page import="com.mycomp.symphonysias.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 
@@ -43,7 +43,7 @@
                 padding: 30px;
                 width: 500px;
                 max-width: 90%;
-                z-index: 10; <%--Garantiza el login esté por encima del fondo y del dashboard--%>
+                z-index: 10; <%--Garantiza el login este por encima del fondo y del dashboard--%>
             }
             .login-logo {
                 width: 100px;
@@ -68,7 +68,7 @@
         <%--Login--%>
         <div class="login-container">
             <img src="public/imagen/logo.png" alt="Logo SymphonySIAS" class="login-logo">
-            <form action="LoginController" method="post" class="login-form">
+            <form action="${pageContext.request.contextPath}/login" method="post" class="login-form">
                 <h4 class="mb-3">Inicio de sesión</h4>
                 <div class="mb-3">
                     <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>

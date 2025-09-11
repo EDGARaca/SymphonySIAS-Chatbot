@@ -16,10 +16,11 @@ import java.util.HexFormat;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import com.mycomp.symphonysias.model.Usuario;
 
 public class UsuarioDAO {
     
-    public Usuario obtenerUsuario(String usuario, String clave) {
+    public Usuario validar(String usuario, String clave) {
     Usuario usuarioObj = null;
 
         try (Connection conn = DBConexion.getConnection()) {
@@ -38,12 +39,14 @@ public class UsuarioDAO {
             
                 //Comparar hash
                 if (hashBD.equalsIgnoreCase(hashInput)) {
+                    String rolNombre = rs.getString ("rol");
+                                        
                     usuarioObj = new Usuario(
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getString("usuario"),
                         rs.getString("password_hash"),
-                        String.valueOf(rs.getInt("nombre"))
+                        rolNombre
                     );
                 }
             }

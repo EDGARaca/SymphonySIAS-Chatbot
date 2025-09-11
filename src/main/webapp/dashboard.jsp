@@ -1,16 +1,15 @@
 <%-- 
     Document   : dashboard
-    Created on : 2/09/2025, 11:21:33 a. m.
+    Created on : 2/09/2025, 11:21:33?a.�m.
     Author     : Spiri
 --%>
 
-<%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="jakarta.servlet.http.*" %>
+<%@ page import="com.mycomp.symphonysias.model.Usuario" %>
 
 
 
 <%
-    HttpSession session = request.getSession(false);
     Usuario usuarioSesion = (session != null) ? (Usuario) session.getAttribute("usuario") : null;
     if (usuarioSesion == null) {
         response.sendRedirect(request.getContextPath() + "login.jsp");
