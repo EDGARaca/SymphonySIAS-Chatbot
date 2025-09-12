@@ -17,19 +17,29 @@
         <div class="login-container">
             <h5>Ingreso al sistema</h5>
             <h2>SYMPHONY SIAS</h2>
-            <form action="login" method="post">
-                <label for="usuario">Usuario: </label>
-                <input type="text" name="usuario" id="usuario" required>
-                
-                <label for="clave">Contraseña: </label>
-                <input type="password" name="clave" id="clave" required>
-                <div class="login-options">
-                    <label><input type="checkbox" checked> Recordarme</label>
-                    <a href="#">¿Olvidaste tu contraseña?</a>
+            <form action="login" method="post" class="login-form">
+                <h4 class="mb-3">Inicio de sesión</h4>
+                <div class="mb-3">
+                    <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>
                 </div>
+                <div class="mb-3">
+                    <input type="password" name="clave" class="form-control" placeholder="Clave" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Ingresar</button>
                 
-                <input type="submit" value="Ingresar">
+                <%
+                    String error = request.getParameter("error");
+                    if ("1".equals(error)) {
+                %>    
+                    <p class="text-danger mt-2">Usuario o clave incorrectos</p>
+                <% 
+                    } 
+                %>
             </form>
+            <div class="login-options">
+                <label><input type="checkbox" checked> Recordarme</label>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
         </div>
     </body>
 </html>

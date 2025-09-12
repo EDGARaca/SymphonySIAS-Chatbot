@@ -17,66 +17,74 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.mycomp.symphonysias.model.Usuario;
-import static java.lang.System.out;
 
 public class UsuarioDAO {
     
     public Usuario validar(String usuario, String clave) {
-    Usuario usuarioObj = null;
-    
-    Connection conn = DBConexion.getConnection();
-    if (conn == null) {
-        System.out.println("Conexion fallida en usuarioDAO");
-        return null;
-    }
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs= null;
+        Usuario usuarioObj = null;
 
-    try {
-        String sql = "SELECT id, nombre, usuario, password_hash, rol FROM usuarios WHERE usuario = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        try {
+            conn = DBConexion.getConnection();
+            String sql = "SELECT id, nombre, usuario, password_hash, rol FROM usuarios WHERE usuario = ?";
+            stmt = conn.prepareStatement(sql);
             stmt.setString(1, usuario);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
 
             if (rs.next()) {
                 String hashBD = rs.getString("password_hash");
-                
-                //Limpieza y trazabilidad
+
+                // Limpieza y trazabilidad
                 String claveLimpia = clave.trim();
                 System.out.println("Clave limpia: " + claveLimpia);
 
                 // Generar hash SHA-256 del input
                 MessageDigest md = MessageDigest.getInstance("SHA-256");
-                byte[] hashBytes = md.digest(clave.getBytes(StandardCharsets.UTF_8));
+                byte[] hashBytes = md.digest(claveLimpia.getBytes(StandardCharsets.UTF_8));
                 String hashInput = HexFormat.of().formatHex(hashBytes);
-                
+
                 System.out.println("Hash generado: " + hashInput);
                 System.out.println("Hash en BD: " + hashBD);
                 System.out.println("Coincidencia: " + hashBD.equalsIgnoreCase(hashInput));
-            
+                                
                 //Comparar hash
                 if (hashBD.equalsIgnoreCase(hashInput)) {
                     String rolNombre = rs.getString("rol");
-                    System.out.println("Usuario autenticado con rol ID: " + rolNombre);
-                                        
+                    System.out.println("Usuario autenticado con rol: " + rolNombre);
+
                     usuarioObj = new Usuario(
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getString("usuario"),
-                        rs.getString("password_hash"),
-                        rolNombre   
+                        hashBD,
+                        rolNombre
                     );
                 } else {
-                    System.out.println("Hash no coincide");
+                    System.out.println("Usuario no encontrado en BD");
                 }
             } else {
                 System.out.println("Usuario no encontrado en BD");
             }
+
         } catch (Exception e) {
-            System.out.println("Error en validacion");
-            e.printStackTrace(); // Puedes redirigir a logs institucionales si lo prefiere
+            System.out.println("Error en validación");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception ex) {
+                System.out.println("Error cerrando recursos");
+                ex.printStackTrace();
+            }
         }
 
         return usuarioObj;
     }
 }
+
 
   

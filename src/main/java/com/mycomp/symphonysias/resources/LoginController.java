@@ -20,7 +20,7 @@ import com.mycomp.symphonysias.model.Usuario;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
     private Login loginService;
-    
+
     @Override
     public void init() throws ServletException {
         loginService = new Login();
@@ -48,21 +48,8 @@ public class LoginController extends HttpServlet {
             
             String rol = user.getRol().toLowerCase();
             
-            if (rol.startsWith("admin")) {
-                response.sendRedirect("bienvenida.jsp");
-            } else if (rol.startsWith("docente")){
-                response.sendRedirect("docente.jsp");
-            } else if (rol.startsWith("estudiante")){
-                response.sendRedirect("estudiante.jsp");
-            } else if (rol.startsWith("funcionario")){    
-                response.sendRedirect("funcionario.jsp");
-            } else {
-                System.out.println("Rol no reconocido: " + rol);
-                response.sendRedirect("index.jsp");
-            }
-        } else {
-            request.setAttribute("error", "Credenciales inválidas");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
-    }   
+            response.sendRedirect("bienvenida.jsp");
+    
+        }   
+    }
 }

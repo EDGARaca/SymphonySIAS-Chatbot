@@ -6,8 +6,8 @@
 
 <%@page import="java.util.List"%>
 <%@page import="com.mycomp.symphonysias.Estudiante"%>
-<%@page import="com.mycomp.symphonysias.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.mycomp.symphonysias.model.Usuario"%>
 <%@page session="true"%>
 
 <%
@@ -21,6 +21,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Sistema de Informacion Academico SYMPHONY - SIAS</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
         <style>
             body {
@@ -64,11 +65,11 @@
         </style>
     </head>
     
-    <body>
+       <body>
         <%--Login--%>
         <div class="login-container">
             <img src="public/imagen/logo.png" alt="Logo SymphonySIAS" class="login-logo">
-            <form action="${pageContext.request.contextPath}/login" method="post" class="login-form">
+            <form action="login" method="post" class="login-form">
                 <h4 class="mb-3">Inicio de sesión</h4>
                 <div class="mb-3">
                     <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>
@@ -98,6 +99,13 @@
                             <a href="" class="btn btn-outline-info">Gestion de Programas</a>
                             <a href="" class="btn btn-outline-info">Gestion de Notas</a>
                             <hr>
+                            <div class="d-flex justify-content-end align-items-center" style="margin-right: 20px;">
+                                <form action="LogoutController" method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" title="Cerrar sesión">
+                                    <i class="fas fa-sign-out-alt"></i> Salir
+                                </button>
+                                </form>
+                            </div>  
                             <img src="public/imagen/banda.jpg" width="100%" style="max-height: 600px; object-fit: cover;">
                         </div>
                     </div>
