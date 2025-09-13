@@ -60,8 +60,8 @@
             <img src="public/imagen/logo.png" alt="Logo SymphonySIAS" class="logo">
             
             <h2>Bienvenido, <%= usuarioSesion.getUsuario() %>!</h2>
-            <p>Acceso concedido al sistema SymphonySIAS.</p>
-            <p>Redirigiendo al menu principal...</p>
+            <h4>Acceso concedido al sistema SymphonySIAS.</h4>
+            <h6>Redirigiendo al menu principal...</h6>
         </div>
     </body>
 </html>

@@ -15,7 +15,7 @@
     </head>
     <body style="background-color:#C1CDCD;">
         <div class="container">
-            <form action="" method="">
+            <form action="GuardarEstudiante" method="post">
                 <div class="card mt-3">
                     <div class="card-body">
                             <div class="d-flex justify-content-start mb-3">
@@ -75,66 +75,3 @@
     
     
     
-    
-    
-    
-    
-    <%--
-                            <%
-                                String mensaje = request.getParameter("mensaje");
-                                if ("ok".equals(mensaje)) {
-                            %>
-                                <script>
-                                    alert("Estudiante registrado correctamente.");
-                                </script>
-                            <%
-                                }
-                            %>
-    <body style="background-color:#C1CDCD;">
-        <div class="container">
-            
-                <form action ="ServletEstudiante" method="POST">
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-center-zafe">
-                        <a href="Estudiante.jsp" class="btn btn-block btn-warning">Volver</a> 
-                        
-                        
-                        </div>
-                            <h2> <center>Registrar Estudiante></center></h2>
-                              <div class="col">
-                                <label>Nombre</label>
-                                <input type="text" name="nombre"  class="form-control" placeholder="Digite el nombre estudiante" required>
-                              </div>
-                            <div class="col">
-                                <label>Apellido</label>
-                                <input type="text" name="apellido"  class="form-control" placeholder="Digite el apellido del estudiante" required>
-                            </div>
-                            <div class="col">
-                                <label>Telefono</label>
-                                <input type="text" name="telefono"  class="form-control" placeholder="Numero de Telefono" required>
-                            </div>
-                             <div class="col">
-                                <label>Direccion</label>
-                                <input type="text" name="direccion"  class="form-control" placeholder="Digite direccion" required>
-                            </div>
-                             <div class="col">
-                                <label>Correo</label>
-                                <input type="text" name="correo"  class="form-control" placeholder="Correo Electronico" required>
-                            </div>
-                            <div class="col">
-                                <label>Genero</label>
-                                <input type="text" name="genero"  class="form-control" placeholder="Digite el genero" required>
-                            </div>
-                            <div class="col mt-3">
-                                <button type="submit" name="action" value="guardar" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            
-        </div>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    </body>
-</html>
-    --%>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycomp.symphonysias;
+package com.mycomp.symphonysias.model;
 
 /**
  *
@@ -10,25 +10,25 @@ package com.mycomp.symphonysias;
  */
 public class Estudiante {
     private int id;
-    private String nombreAlumno;
-    private String apellidoAlumno;
+    private String nombre;
+    private String apellido;
     private String telefono;
     private String direccion;
     private String correo;
-    private String Genero;
+    private String genero;
     // constructor vacio
     public Estudiante()
     {}
     //constructor completo que me permite crear un estudiante con todos sus datos de una sola vez 
-    public Estudiante(int id,String nombreAlumno, String apellidoAlumno, String telefono,String direccion, String correo, String genero)
+    public Estudiante(int id,String nombre, String apellido, String telefono,String direccion, String correo, String genero)
     {
      this.id=id;
-     this.nombreAlumno=nombreAlumno;
-     this.apellidoAlumno=apellidoAlumno;
+     this.nombre=nombre;
+     this.apellido=apellido;
      this.telefono=telefono;
      this.direccion=direccion;
      this.correo=correo;
-     this.Genero=genero;
+     this.genero=genero;
     }
 
     public int getId() {
@@ -39,20 +39,20 @@ public class Estudiante {
         this.id = id;
     }
 
-    public String getNombreAlumno() {
-        return nombreAlumno;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreAlumno(String nombreAlumno) {
-        this.nombreAlumno = nombreAlumno;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidoAlumno() {
-        return apellidoAlumno;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidoAlumno(String apellidoAlumno) {
-        this.apellidoAlumno = apellidoAlumno;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getTelefono() {
@@ -80,22 +80,22 @@ public class Estudiante {
     }
 
     public String getGenero() {
-        return Genero;
+        return genero;
     }
 
     public void setGenero(String Genero) {
-        this.Genero = Genero;
+        this.genero = Genero;
     }
     @Override
     public String toString(){
-     return "Nota{" +
+     return "Estudiante{" +
                "id=" + id +
-               ", nombreAlumno='" + nombreAlumno + '\'' +
-               ", apellidoAlumno='" + apellidoAlumno + '\'' +
+               ", nombre='" + nombre + '\'' +
+               ", apellido='" + apellido + '\'' +
                ", telefono=" + telefono +
                ", direccion='" + direccion + '\'' +
                ", correo=" + correo +
-               ", genero=" +Genero +
+               ", genero=" + genero +
                '}';
     }
 }

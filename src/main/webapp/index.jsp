@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="com.mycomp.symphonysias.Estudiante"%>
+<%@page import="com.mycomp.symphonysias.model.Estudiante"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mycomp.symphonysias.model.Usuario"%>
 <%@page session="true"%>

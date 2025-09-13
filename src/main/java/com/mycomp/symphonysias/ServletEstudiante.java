@@ -4,6 +4,8 @@
  */
 package com.mycomp.symphonysias;
 
+import com.mycomp.symphonysias.model.Estudiante;
+import com.mycomp.symphonysias.model.EstudianteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;

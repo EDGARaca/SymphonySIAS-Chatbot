@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycomp.symphonysias;
+package com.mycomp.symphonysias.model;
+import com.mycomp.symphonysias.ConexionDao;
+import java.sql.*;
+import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,9 +41,58 @@ public class EstudianteDao {
           }finally{
                    ConexionDao.cerrarConexion(conn);
                   }
-        
-        
     }
+    
+    public boolean guardar(Estudiante est) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+        conn = ConexionDao.obtenerConexion();
+        String sql = "INSERT INTO estudiantes (nombre, apellido, telefono, direccion, correo, genero) VALUES (?, ?, ?, ?, ?, ?)";
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, est.getNombre());
+        stmt.setString(2, est.getApellido());
+        stmt.setString(3, est.getTelefono());
+        stmt.setString(4, est.getDireccion());
+        stmt.setString(5, est.getCorreo());
+        stmt.setString(6, est.getGenero());
+        return stmt.executeUpdate() > 0;
+    } catch (Exception e) {
+        System.out.println("Error al guardar estudiante: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    } finally {
+        ConexionDao.cerrarConexion(conn);
+    }
+    }/////aqui
+    ///
+    public boolean actualizar(Estudiante est) {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    boolean exito = false;
+    try {
+        conn = ConexionDao.obtenerConexion();
+        String sql = "UPDATE estudiantes SET nombre = ?, apellido = ?, telefono = ?, direccion = ?, correo = ?, genero = ? WHERE id = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, est.getNombre());
+        stmt.setString(2, est.getApellido());
+        stmt.setString(3, est.getTelefono());
+        stmt.setString(4, est.getDireccion());
+        stmt.setString(5, est.getCorreo());
+        stmt.setString(6, est.getGenero());
+        stmt.setInt(7, est.getId());
+        exito = stmt.executeUpdate() > 0;
+    } catch (Exception e) {
+        System.out.println("Error al actualizar estudiante: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        ConexionDao.cerrarConexion(conn);
+    }
+    return exito;
+}
+
+    
+
     // creamos una función tipo publica la cual nos permite actualizar los datos de los estudiantes
     public void ActualizarEstudiante(int id, String nombre, String apellido, String telefono, String direccion, String correo, String genero){
      Connection conn = null;
@@ -49,7 +101,7 @@ public class EstudianteDao {
          // para conectarnos a nuestra base de datos con la función obtenerConexion
         conn = ConexionDao.obtenerConexion();
         // Realizamos la consulta a nuestra base de datos
-        String sql ="update estudiantes set Nombre =?,Apellido =?,Telefono=?,Direccion=?,Correo=?,Genero=? WHERE IdEstudiante=?";
+        String sql ="update estudiantes set Nombre =?,Apellido =?,Telefono=?,Direccion=?,Correo=?,Genero=? WHERE id=?";
         stmt = conn.prepareStatement(sql);
         stmt.setString(1, nombre);
         stmt.setString(2, apellido);
@@ -80,9 +132,9 @@ public class EstudianteDao {
         rs = stmt.executeQuery();
         while(rs.next()){
         Estudiante student = new Estudiante();
-        student.setId(rs.getInt("IdEstudiante"));
-        student.setNombreAlumno(rs.getString("nombre"));
-        student.setApellidoAlumno(rs.getString("apellido"));
+        student.setId(rs.getInt("id"));
+        student.setNombre(rs.getString("nombre"));
+        student.setApellido(rs.getString("apellido"));
         student.setTelefono(rs.getString("telefono"));
         student.setDireccion(rs.getString("direccion"));
         student.setCorreo(rs.getString("correo"));
@@ -108,16 +160,16 @@ public class EstudianteDao {
     try{
         // Conexión a la base de datos
         conn = ConexionDao.obtenerConexion();
-        String sql = "SELECT * FROM estudiantes WHERE IdEstudiante = ?";
+        String sql = "SELECT * FROM estudiantes WHERE Id = ?";
         stmt = conn.prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
 
         if(rs.next()){
             estudiante = new Estudiante();
-            estudiante.setId(rs.getInt("IdEstudiante"));
-            estudiante.setNombreAlumno(rs.getString("Nombre"));
-            estudiante.setApellidoAlumno(rs.getString("Apellido"));
+            estudiante.setId(rs.getInt("id"));
+            estudiante.setNombre(rs.getString("Nombre"));
+            estudiante.setApellido(rs.getString("Apellido"));
             estudiante.setTelefono(rs.getString("Telefono"));
             estudiante.setDireccion(rs.getString("Direccion"));
             estudiante.setCorreo(rs.getString("Correo"));
@@ -157,4 +209,25 @@ public class EstudianteDao {
    }
    return total;
   }
+  
+  public void eliminar(int id) {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    try {
+        conn = ConexionDao.obtenerConexion();
+        String sql = "DELETE FROM estudiantes WHERE id = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+    } catch (Exception e) {
+        System.out.println("Error al eliminar estudiante: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        ConexionDao.cerrarConexion(conn);
+    }
+}
+
+  
+  
+  
 }
