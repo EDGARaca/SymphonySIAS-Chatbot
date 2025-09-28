@@ -24,7 +24,7 @@
                            <a href="" class="btn btn-outline-info">Gestion de Programas</a>
                            <a href="" class="btn btn-outline-info">Gestion de Notas</a>
                            <hr>
-                           <h2><center><font color="#E3A869"><b>SISTEMA DE INFORMACION ACADEMICA - SIA</b></font></center></h2>
+                           <h2><center><font color="#E3A869"><b>SISTEMA DE INFORMACION ACADEMICA SIMPHONY- SIAS</b></font></center></h2>
                            <hr>
                            <img src="public/imagen/banda.jpg" width="1100" height="650" class="400">
                         </div>

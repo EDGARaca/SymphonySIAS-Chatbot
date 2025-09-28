@@ -12,7 +12,11 @@
 
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    boolean autenticado = (usuario != null);
+    if (usuario == null){
+        response.sendRedirect("login.jsp");
+        return;
+    }
+    boolean autenticado = true;
 %>
 
 <!DOCTYPE html>
