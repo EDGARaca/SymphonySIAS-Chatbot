@@ -4,42 +4,98 @@
     Author     : Spiri
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.mycomp.symphonysias.model.Usuario"%>
+<%
+    HttpSession sesion = request.getSession(false);
+    Usuario usuarioActivo = (Usuario) sesion.getAttribute("usuario");
+    String nombreUsuario = (usuarioActivo != null) ? usuarioActivo.getNombre() : "Invitado";
+    String rolUsuario = (usuarioActivo != null) ? usuarioActivo.getRol() : "Sin rol";
+%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login - SymphonySIAS</title>
-        
-        <link rel="stylesheet" href="public/css/style.css">
-    </head>
-    <body>
-        <div class="login-container">
-            <h5>Ingreso al sistema</h5>
-            <h2>SYMPHONY SIAS</h2>
-            <form action="login" method="post" class="login-form">
-                <h4 class="mb-3">Inicio de sesión</h4>
-                <div class="mb-3">
-                    <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>
-                </div>
-                <div class="mb-3">
-                    <input type="password" name="clave" class="form-control" placeholder="Clave" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Ingresar</button>
-                
-                <%
-                    String error = request.getParameter("error");
-                    if ("1".equals(error)) {
-                %>    
-                    <p class="text-danger mt-2">Usuario o clave incorrectos</p>
-                <% 
-                    } 
-                %>
-            </form>
-            <div class="login-options">
-                <label><input type="checkbox" checked> Recordarme</label>
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
-        </div>
-    </body>
+<head>
+    <title>Panel - Escuela de Música SymphonySIAS</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #FCFCFC; /* fondo suave */
+            text-align: center;
+        }
+        .titulo {
+            background-color: #FCFCFC; /* fondo titulo */
+            color: #FEDC0B;
+            padding: 50px 0 10px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .usuario {
+            font-size: 20px;
+            color: #000000;
+            margin-bottom: 0px;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #CBD6D6; /* lineas */
+            margin: 20px auto;
+            width: 80%;
+        }
+        .fila {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+        }
+        .recuadro {
+            background-color: #6FE2E8; /* rosa pastel */
+            color: #2C3E50;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .recuadro:hover {
+            background-color: #2EB8BF; /* más oscuro al hover */
+        }
+        .imagen-final {
+            margin: 40px auto;
+        }
+        .imagen-final img {
+            width: 85%;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="titulo">
+        SISTEMA DE INFORMACIÓN ACADÉMICA SYMPHONY - SIAS  
+        <div class="usuario">👤 Usuario activo: <strong><%= nombreUsuario %></strong> (<%= rolUsuario %>)</div>
+    </div>
+
+    <hr>
+
+    <div class="fila">
+        <a href="modulo1.jsp" class="recuadro">Usuarios</a>
+        <a href="modulo2.jsp" class="recuadro">Estudiantes</a>
+        <a href="modulo3.jsp" class="recuadro">Materias</a>
+        <a href="modulo4.jsp" class="recuadro">Docentes</a>
+        <a href="modulo5.jsp" class="recuadro">Programas</a>
+        <a href="modulo6.jsp" class="recuadro">Notas</a>
+    </div>
+
+    <hr>
+
+    <div class="imagen-final">
+        <img src="public/imagen/banda.jpg" alt="Imagen decorativa">
+    </div>
+</body>
 </html>

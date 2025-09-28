@@ -4,18 +4,13 @@
     Author     : Spiri
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.http.*" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.mycomp.symphonysias.model.Usuario" %>
-
-
 <%
-    Usuario usuarioSesion = (session != null) ? (Usuario) session.getAttribute("usuario") : null;
-    if (usuarioSesion == null) {
-        response.sendRedirect("login.jsp");
-        return;        
-    }  
+    HttpSession sesion = request.getSession(false);
+    Usuario user = (Usuario) sesion.getAttribute("usuario");
 %>
+
 
 
 <!DOCTYPE html>

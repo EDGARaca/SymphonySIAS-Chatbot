@@ -3,48 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
-/**
- *
- * @author Spiri
- */
-
-
 package com.mycomp.symphonysias.model;
 
 public class Usuario {
-    private final int id; // nuevo campo
-    private final String nombre;
-    private final String usuario;
-    private final String passwordHash;
-    private final String rol;
-    
-    // Contructor comp
-    public Usuario(int id, String nombre, String usuario, String passwordHash, String rol){
+    private int id;
+    private String nombre;
+    private String usuario;
+    private String password;
+    private String rol;
+
+    public Usuario(int id, String nombre, String usuario, String password, String rol) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.rol = rol;
     }
-    
-    public int getId() {
-        return id;
-    }
-    
-    public String getNombre() { 
-        return nombre; 
-    }
-    
-    public String getUsuario() { 
-        return usuario; 
-    }
-    
-    public String getPasswordHash() { 
-        return passwordHash; 
-    }
-    
-    public String getRol() { 
-        return rol; 
-    }
+
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getUsuario() { return usuario; }
+    public String getPassword() { return password; }
+    public String getRol() { return rol; }
 }

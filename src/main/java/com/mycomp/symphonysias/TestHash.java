@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 
 public class TestHash {
     public static void main(String[] args) throws Exception{
-        String claveOriginal = "12345"; // reemplaza con la contrasena original
+        String claveOriginal = "admin123"; // reemplaza con la contrasena original
         
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(claveOriginal.getBytes("UTF-8"));

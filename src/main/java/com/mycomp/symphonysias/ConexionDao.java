@@ -4,63 +4,30 @@
  */
 package com.mycomp.symphonysias;
 
-/**
- *
- * @author Spiri
- */
-
-import java.sql.DriverManager;
 import java.sql.Connection;
-/*import java.sql.SQLException;*/
-
+import java.sql.DriverManager;
 
 public class ConexionDao {
-    // Declaracion de variables para la conexion a la base de datos
-    private static final String url ="jdbc:mysql://localhost:33065/login_symphony";
-    private static final String username="root";
-    private static final String pass="";
-    
-    // conexion base de datos
-    public static Connection obtenerConexion(){
+    private static final String url = "jdbc:mysql://localhost:3306/login_symphony";
+    private static final String username = "root";
+    private static final String pass = "";
+
+    public static Connection obtenerConexion() {
         Connection conn = null;
-            try {
-                  Class.forName("com.mysql.cj.jdbc.Driver");
-                  conn = DriverManager.getConnection(url,username,pass);
-              } catch (Exception e) {
-                  System.out.println("Error: " + e.getMessage());
-              }
-
-              return conn;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, username, pass);
+        } catch (Exception e) {
+            System.out.println("Error al conectar: " + e.getMessage());
+        }
+        return conn;
     }
-    public static void cerrarConexion(Connection Conn){
-        try{
-            if(Conn !=null){
-                Conn.close();
-            }
-        }catch(Exception e){
-        System.out.println("Error al conectarnos"+e.toString());
 
+    public static void cerrarConexion(Connection conn) {
+        try {
+            if (conn != null) conn.close();
+        } catch (Exception e) {
+            System.out.println("Error al cerrar conexión: " + e.toString());
         }
     }
-    
-    
-    /* probar la conexión a la base de datos*/
-/*Esto es solo para probar la conexion con la base de datos despues lo podemos comentar para que no nos genere ningun problema en nuestro codigo*/
-/*    
-public static void main(String[]args){
-  try
-  {
-    Connection conn = ConexionDao.obtenerConexion();
-    if(conn !=null){
-        System.out.println("Conexion a la base de datos exitosa");
-    }else{
-        System.out.println("No se puede establecer la conexión a la base de datos");
-    }
-  }catch(Exception ex){
-        System.out.println("Error al conectar");
-	ex.printStackTrace();
-  }
-  
-   }*/
 }
-
