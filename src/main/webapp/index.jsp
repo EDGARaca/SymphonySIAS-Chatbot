@@ -24,6 +24,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sistema de Informacion Academico SYMPHONY - SIAS</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -180,10 +181,13 @@
             body {
                 margin: 0;
                 padding: 0;
+                min-height: 100vh;
                 background-image: url("public/imagen/pexels-jplenio-1103970.jpg");
                 background-size: cover; 
                 background-position: center;
+                background-repeat: no-repeat;
                 backdrop-filter: blur(<%= autenticado ? "0px" : "6px" %>);
+                overflow-x: hidden;
             }
             .login-container {
                 position: absolute;
@@ -240,9 +244,9 @@
         <%--Dashboard--%>
         <div class="dashboard">
             <div class="container text-center">
-                <div class="row mt-4">
+                <div class="row mt-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body py-2">
                             <h2 class="text-warning"><b>SISTEMA DE INFORMACION ACADEMICA SYMPHONY - SIAS</b></h2>
                             <hr>
                             <a href="" class="btn btn-outline-info">Usuarios</a>
@@ -259,7 +263,7 @@
                                 </button>
                                 </form>
                             </div>  
-                            <img src="public/imagen/banda.jpg" width="100%" style="max-height: 600px; object-fit: cover;">
+                            <img src="public/imagen/banda.jpg" class="img-fluid" style="height: auto; max-height: 70vh; object-fit: cover;">
                         </div>
                     </div>
                 </div>
