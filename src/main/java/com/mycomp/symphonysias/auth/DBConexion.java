@@ -39,11 +39,27 @@ public class DBConexion {
     public static void cerrarHiloJDBC(){
         try {
             com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
-            System.out.println("Hilo JDBC cerrado correctamente");
+            System.out.println("Conexión JDBC cerrada correctamente");
         } catch (Exception e) {
             System.out.println("Error al cerrar hilo JDBC: " + e.getMessage());
         }
     }
+    
+    
+    // Método para cerrar una conexión individual
+public static void cerrarConexion(Connection conn) {
+    if (conn != null) {
+        try {
+            conn.close();
+            System.out.println("Conexión cerrada correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar la conexión");
+            e.printStackTrace();
+        }
+    }
+}
+
+    
 }
     
     

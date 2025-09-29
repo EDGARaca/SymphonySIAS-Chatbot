@@ -16,7 +16,8 @@ import com.mycomp.symphonysias.model.Usuario;
 public class Login {
     public Usuario autenticar(String usuario, String clave) {
         UsuarioDAO dao = new UsuarioDAO();
-        return dao.validar(usuario, clave); // Este metodo debe aplicar hash y mapear rol
+        return dao.validar(usuario, clave); // Este método valida usuario y contraseña directamente desde la base de datos
+
     
     }
 }

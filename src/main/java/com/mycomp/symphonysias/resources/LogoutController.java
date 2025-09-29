@@ -24,7 +24,10 @@ public class LogoutController extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Cierra la sesión
         }
-        response.sendRedirect("index.jsp"); // Redirige al login embebido en index.jsp
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.sendRedirect("login.jsp"); // Redirige al formulario de login, permitiendo que otro usuario inicie sesion.
     }
 }
 

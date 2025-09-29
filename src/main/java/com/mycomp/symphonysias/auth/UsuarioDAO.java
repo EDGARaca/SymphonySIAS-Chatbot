@@ -27,63 +27,49 @@ public class UsuarioDAO {
         Usuario usuarioObj = null;
 
         try {
-            conn = DBConexion.getConnection();
-            String sql = "SELECT id, nombre, usuario, password_hash, rol FROM usuarios WHERE usuario = ?";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuario);
-            rs = stmt.executeQuery();
+        conn = DBConexion.getConnection();
+        String sql = "SELECT * FROM usuarios WHERE usuario = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                String hashBD = rs.getString("password_hash");
+        if (rs.next()) {
+            String passwordBD = rs.getString("password");
 
-                // Limpieza y trazabilidad
-                String claveLimpia = clave.trim();
-                System.out.println("Clave limpia: " + claveLimpia);
-
-                // Generar hash SHA-256 del input
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                byte[] hashBytes = md.digest(claveLimpia.getBytes(StandardCharsets.UTF_8));
-                String hashInput = HexFormat.of().formatHex(hashBytes);
-
-                System.out.println("Hash generado: " + hashInput);
-                System.out.println("Hash en BD: " + hashBD);
-                System.out.println("Coincidencia: " + hashBD.equalsIgnoreCase(hashInput));
-                                
-                //Comparar hash
-                if (hashBD.equalsIgnoreCase(hashInput)) {
-                    String rolNombre = rs.getString("rol");
-                    System.out.println("Usuario autenticado con rol: " + rolNombre);
-
-                    usuarioObj = new Usuario(
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("usuario"),
-                        hashBD,
-                        rolNombre
-                    );
-                } else {
-                    System.out.println("Usuario no encontrado en BD");
-                }
+            if (clave.equals(passwordBD)) {
+                usuarioObj = new Usuario(
+                    rs.getInt("id"),
+                    rs.getString("rol"),
+                    rs.getString("nombre"),
+                    rs.getString("cedula"),
+                    rs.getString("direccion"),
+                    rs.getString("correo"),
+                    rs.getString("usuario"),
+                    passwordBD
+                );
             } else {
-                System.out.println("Usuario no encontrado en BD");
+                System.out.println("Contraseña incorrecta");
             }
-
-        } catch (Exception e) {
-            System.out.println("Error en validación");
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (Exception ex) {
-                System.out.println("Error cerrando recursos");
-                ex.printStackTrace();
-            }
+        } else {
+            System.out.println("Usuario no encontrado");
         }
 
-        return usuarioObj;
+    } catch (Exception e) {
+        System.out.println("Error en validación");
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (Exception ex) {
+            System.out.println("Error cerrando recursos");
+            ex.printStackTrace();
+        }
     }
+
+    return usuarioObj;
+}
 }
 
 
